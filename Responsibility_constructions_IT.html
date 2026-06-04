@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Italian Modal & Impersonal Constructions – ConstructiCon</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap');
+
+  :root {
+    --bg: #faf8f3;
+    --surface: #ffffff;
+    --border: #d6cfc0;
+    --border-light: #ede8de;
+    --text: #1a1612;
+    --text-muted: #6b6255;
+    --accent: #8b3a1e;
+    --accent-light: #f5ede8;
+    --dovere: #1e4d8b;
+    --dovere-light: #e8eef5;
+    --volere: #2d6b3a;
+    --volere-light: #e8f5eb;
+    --potere: #7b3d8b;
+    --potere-light: #f2e8f5;
+    --impers: #7a5c1e;
+    --impers-light: #f5f0e8;
+    --slot-bg: #f0ece3;
+    --tag-bg: #e8e2d6;
+    --max-width: 1000px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'EB Garamond', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 18px;
+    line-height: 1.6;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .container { max-width: var(--max-width); margin: 0 auto; }
+
+  header {
+    margin-bottom: 3rem;
+    border-bottom: 2px solid var(--text);
+    padding-bottom: 1.5rem;
+  }
+
+  header .site-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  header .subtitle {
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 0.4rem;
+    font-size: 1.1rem;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    border-left: 3px solid var(--accent);
+    padding-left: 0.8rem;
+    margin: 3rem 0 1rem;
+  }
+
+  .section-label.first { margin-top: 0; }
+
+  .section-label.sub {
+    border-left-color: var(--text-muted);
+    margin: 2rem 0 1rem;
+    font-size: 0.75rem;
+  }
+
+  .family-intro {
+    padding: 1.25rem 1.5rem;
+    background: var(--accent-light);
+    border-left: 3px solid var(--accent);
+    font-style: italic;
+    color: var(--text);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .cxn-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    margin-bottom: 2.5rem;
+    overflow: hidden;
+  }
+
+  .cxn-header {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    background: #faf9f6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .cxn-header h2 { font-size: 1.3rem; font-weight: 600; }
+
+  .modal-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.75rem;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+
+  .badge-dovere { background: var(--dovere-light); color: var(--dovere); border: 1px solid #b8cce4; }
+  .badge-volere { background: var(--volere-light); color: var(--volere); border: 1px solid #b8dcc0; }
+  .badge-potere { background: var(--potere-light); color: var(--potere); border: 1px solid #d8b8e4; }
+  .badge-impers { background: var(--impers-light); color: var(--impers); border: 1px solid #d4c09a; }
+
+  .cxn-body { display: flex; flex-direction: column; }
+
+  .info-row {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .info-row:last-child { border-bottom: none; }
+
+  .info-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 1.25rem 1.5rem;
+    background: #fdfdfb;
+    border-right: 1px solid var(--border-light);
+  }
+
+  .info-content { padding: 1.25rem 1.5rem; }
+
+  .semantic-fn { font-style: italic; color: var(--accent); }
+
+  .pattern-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    background: var(--bg);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    color: #333;
+  }
+
+  .slots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.75rem;
+    margin: 0.5rem 0;
+  }
+
+  .slot {
+    background: var(--slot-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.75rem;
+    text-align: center;
+  }
+
+  .slot.predicate { background: #f2ede4; border-color: #cbd2c0; }
+
+  .slot-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .slot-role  { font-size: 0.9rem; font-weight: 600; color: var(--accent); line-height: 1.2; }
+  .slot-syn   { font-size: 0.8rem; color: var(--text-muted); font-style: italic; margin: 0.2rem 0; }
+  .slot-form  { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--text); }
+
+  .table-responsive { width: 100%; overflow-x: auto; }
+
+  .sub-cxn-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    margin: 0.5rem 0;
+  }
+
+  .sub-cxn-table th {
+    background: var(--slot-bg);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .sub-cxn-table td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--border-light);
+    vertical-align: top;
+  }
+
+  .sub-cxn-table tr:last-child td { border-bottom: none; }
+  .sub-cxn-table tr:hover td { background: #faf7f2; }
+
+  .example-sent { font-style: italic; color: var(--accent); font-weight: 600; }
+
+  .pragmatic-tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    padding: 0.15rem 0.5rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .source-role { font-size: 0.85rem; }
+  .source-dovere { color: var(--dovere); font-weight: 600; }
+  .source-volere { color: var(--volere); font-weight: 600; }
+  .source-potere { color: var(--potere); font-weight: 600; }
+  .source-impers { color: var(--impers); font-weight: 600; }
+
+  .collo-list { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.5rem; }
+  .collo-verb {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    background: var(--tag-bg);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    color: var(--text);
+  }
+
+  .note {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    body { font-size: 16px; padding: 1rem 0.5rem 2rem; }
+    header h1 { font-size: 1.8rem; }
+    .info-row { grid-template-columns: 1fr; }
+    .info-label { border-right: none; border-bottom: 1px solid var(--border-light); padding: 0.6rem 1rem; background: #faf9f6; }
+    .info-content { padding: 1rem; }
+    .slots-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="site-name">Italian ConstructiCon · Responsibility &amp; Impersonality</div>
+    <h1>Modal &amp; Impersonal Necessity Construction Families</h1>
+    <div class="subtitle">Italian constructions: <em>dovere</em>, <em>volere</em>, <em>potere</em> · necessity verbs &amp; adjectives</div>
+  </header>
+
+  <!-- ==================== FAMILY 1: RESPONSIBILITY ==================== -->
+
+  <div class="section-label first">Construction Family 1 · Responsibility</div>
+  <div class="family-intro">
+    An <strong>IMPOSER / VOLITIONER / ENABLER / PERMITTER</strong> construes a <strong>RESPONSIBLE AGENT</strong> as obliged, willing, or able to perform an <strong>ACTION</strong>, optionally directed at an <strong>AFFECTED OBJECT</strong> or resulting in a <strong>GOAL STATE</strong>.
+  </div>
+
+  <!-- DOVERE -->
+  <div class="section-label sub">Modal: DOVERE</div>
+  <div class="cxn-block">
+    <div class="cxn-header">
+      <h2>Deontic Obligation Construction</h2>
+      <span class="modal-badge badge-dovere">dovere</span>
+    </div>
+    <div class="cxn-body">
+      <div class="info-row">
+        <div class="info-label">Semantic function</div>
+        <div class="info-content semantic-fn">An IMPOSER (external or self-imposed) construes a RESPONSIBLE AGENT as obliged to perform an ACTION, optionally directed at an AFFECTED OBJECT or toward a GOAL STATE. The IMPOSER may coincide with the agent (self-obligation) or be a distinct entity assigning responsibility to another.</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">General cxn-type</div>
+        <div class="info-content">Modal-Deontic Obligation Construction</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Formal pattern</div>
+        <div class="info-content"><code class="pattern-code">[NP/pro/ø]<sub>AGENT</sub> + dovere[fin] + V[inf] (+ NP<sub>OBJ</sub>)</code></div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Slots</div>
+        <div class="info-content">
+          <div class="slots-grid">
+            <div class="slot">
+              <div class="slot-label">Slot 1 · argument</div>
+              <div class="slot-role">RESPONSIBLE AGENT</div>
+              <div class="slot-syn">subject</div>
+              <div class="slot-form">NP / pro / ø</div>
+            </div>
+            <div class="slot predicate">
+              <div class="slot-label">Slot 2 · predicate</div>
+              <div class="slot-role">MODAL</div>
+              <div class="slot-syn">finite verb</div>
+              <div class="slot-form">dovere[fin]</div>
+            </div>
+            <div class="slot predicate">
+              <div class="slot-label">Slot 3 · predicate</div>
+              <div class="slot-role">ACTION</div>
+              <div class="slot-syn">complement</div>
+              <div class="slot-form">V[inf]</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Sub-constructions</div>
+        <div class="info-content table-responsive">
+          <table class="sub-cxn-table">
+            <thead>
+              <tr><th>Construction</th><th>Example</th><th>IMPOSER</th><th>RESPONSIBLE AGENT</th><th>Pragmatic effect</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Modal + implicit subject</td>
+                <td class="example-sent">Dobbiamo agire</td>
+                <td><span class="source-role source-dovere">incorporated / diffuse</span></td>
+                <td>ø (morphology, 1pl)</td>
+                <td><span class="pragmatic-tag">responsibility diffuse / inclusive</span></td>
+              </tr>
+              <tr>
+                <td>Modal + explicit pronoun subject</td>
+                <td class="example-sent">Noi dobbiamo agire</td>
+                <td><span class="source-role source-dovere">incorporated / diffuse</span></td>
+                <td><em>noi</em> (topicalized)</td>
+                <td><span class="pragmatic-tag">responsibility claimed / foregrounded</span></td>
+              </tr>
+              <tr>
+                <td>Modal + explicit nominal subject</td>
+                <td class="example-sent">Il Governo deve agire</td>
+                <td><span class="source-role source-dovere">external, implicit in discourse</span></td>
+                <td><em>il Governo</em> (named 3sg)</td>
+                <td><span class="pragmatic-tag">responsibility attributed to named entity</span></td>
+              </tr>
+              <tr>
+                <td>Modal + explicit 2nd-person pronoun subject</td>
+                <td class="example-sent">Dovete agire</td>
+                <td><span class="source-role source-dovere">speaker as IMPOSER</span></td>
+                <td><em>voi</em> (implicit 2pl addressee)</td>
+                <td><span class="pragmatic-tag">responsibility assigned to addressee</span></td>
+              </tr>
+              <tr>
+                <td>Modal + explicit 2nd-person nominal subject</td>
+                <td class="example-sent">Il Governo deve agire / Voi dovete agire</td>
+                <td><span class="source-role source-dovere">speaker / discourse as IMPOSER</span></td>
+                <td>explicit 2nd/3rd person NP</td>
+                <td><span class="pragmatic-tag">responsibility directly assigned to identified agent</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Collo-profile</div>
+        <div class="info-content">
+          <div class="collo-list">
+            <span class="collo-verb">agire</span><span class="collo-verb">intervenire</span><span class="collo-verb">rispondere</span><span class="collo-verb">decidere</span><span class="collo-verb">provvedere</span><span class="collo-verb">fare</span><span class="collo-verb">prendere</span><span class="collo-verb">destinare</span><span class="collo-verb">rilasciare</span><span class="collo-verb">legiferare</span><span class="collo-verb">governare</span><span class="collo-verb">riformare</span><span class="collo-verb">attivarsi</span>
+          </div>
+          <p class="note">Predominantly agentive verbs (transitive or intransitive) in the domain of public / institutional action.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VOLERE -->
+  <div class="section-label sub">Modal: VOLERE</div>
+  <div class="cxn-block">
+    <div class="cxn-header">
+      <h2>Volitional Construal Construction</h2>
+      <span class="modal-badge badge-volere">volere</span>
+    </div>
+    <div class="cxn-body">
+      <div class="info-row">
+        <div class="info-label">Semantic function</div>
+        <div class="info-content semantic-fn">A VOLITIONER expresses a will that a RESPONSIBLE AGENT (co-referential or distinct) performs an ACTION. The RESPONSIBLE AGENT may be self-directed, projected onto another party, or deagentivized. When VOLITIONER and RESPONSIBLE AGENT are distinct, the construction additionally assigns responsibility to the embedded agent.</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">General cxn-type</div>
+        <div class="info-content">Modal-Volitional Construction (main clause + optional subordinate)</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Formal patterns</div>
+        <div class="info-content" style="display:flex; flex-direction:column; gap:0.4rem;">
+          <div><span style="font-size:0.8rem; color:var(--text-muted); display:inline-block; width:40px;">(A)</span> <code class="pattern-code">[NP/pro/ø]<sub>VOLITIONER</sub> + volere[fin] + V[inf]</code></div>
+          <div><span style="font-size:0.8rem; color:var(--text-muted); display:inline-block; width:40px;">(B)</span> <code class="pattern-code">[NP/pro/ø]<sub>VOLITIONER</sub> + volere[fin] + che + [NP/pro/ø/si]<sub>AGENT</sub> + V[cong]</code></div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Slots (pattern B)</div>
+        <div class="info-content">
+          <div class="slots-grid">
+            <div class="slot">
+              <div class="slot-label">Slot 1 · argument</div>
+              <div class="slot-role">VOLITIONER</div>
+              <div class="slot-syn">main subject</div>
+              <div class="slot-form">NP / pro / ø</div>
+            </div>
+            <div class="slot predicate">
+              <div class="slot-label">Slot 2 · predicate</div>
+              <div class="slot-role">MODAL</div>
+              <div class="slot-syn">main verb</div>
+              <div class="slot-form">volere[fin]</div>
+            </div>
+            <div class="slot">
+              <div class="slot-label">Slot 3 · argument</div>
+              <div class="slot-role">RESP. AGENT</div>
+              <div class="slot-syn">subord. subject</div>
+              <div class="slot-form">NP / pro / ø / si</div>
+            </div>
+            <div class="slot predicate">
+              <div class="slot-label">Slot 4 · predicate</div>
+              <div class="slot-role">ACTION</div>
+              <div class="slot-syn">subord. verb</div>
+              <div class="slot-form">V[cong]</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Sub-constructions</div>
+        <div class="info-content table-responsive">
+          <table class="sub-cxn-table">
+            <thead>
+              <tr><th>Construction</th><th>Example</th><th>VOLITIONER</th><th>RESPONSIBLE AGENT</th><th>Pragmatic effect</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Modal + implicit subject (simple INF)</td>
+                <td class="example-sent">Vuole accettare</td>
+                <td><span class="source-role source-volere">= RESP. AGENT</span></td>
+                <td>implicit subject (same)</td>
+                <td><span class="pragmatic-tag">volition = responsibility (same agent)</span></td>
+              </tr>
+              <tr>
+                <td>Modal + subordinate explicit subject</td>
+                <td class="example-sent">Vogliamo che il Governo agisca</td>
+                <td><span class="source-role source-volere">ø 1pl (main clause)</span></td>
+                <td><em>il Governo</em> (subord.)</td>
+                <td><span class="pragmatic-tag">responsibility projected onto distinct agent</span></td>
+              </tr>
+              <tr>
+                <td>Modal + subordinate 2nd-person subject</td>
+                <td class="example-sent">Vogliamo che voi agiate</td>
+                <td><span class="source-role source-volere">ø 1pl (main clause)</span></td>
+                <td><em>voi</em> (explicit 2pl addressee)</td>
+                <td><span class="pragmatic-tag">responsibility assigned to addressee</span></td>
+              </tr>
+              <tr>
+                <td>Modal + subordinate implicit subject</td>
+                <td class="example-sent">Vogliamo che interveniamo</td>
+                <td><span class="source-role source-volere">ø (main clause)</span></td>
+                <td>co-ref. with VOLITIONER</td>
+                <td><span class="pragmatic-tag">reflexive collective responsibility</span></td>
+              </tr>
+              <tr>
+                <td>Modal + subordinate impersonal <em>si</em></td>
+                <td class="example-sent">Vogliamo che si intervenga</td>
+                <td><span class="source-role source-volere">ø (main clause)</span></td>
+                <td>deagentivized (<em>si</em>)</td>
+                <td><span class="pragmatic-tag">responsibility diffuse / agent elided</span></td>
+              </tr>
+              <tr>
+                <td>Modal + subordinate causative</td>
+                <td class="example-sent">Vogliono che la gente muoia</td>
+                <td><span class="source-role source-volere">explicit (main clause)</span></td>
+                <td><em>la gente</em> (AFFECTED PARTICIPANT)</td>
+                <td><span class="pragmatic-tag">volition causes state in other participant</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Collo-profile</div>
+        <div class="info-content">
+          <div class="collo-list">
+            <span class="collo-verb">accettare</span><span class="collo-verb">fare</span><span class="collo-verb">agire</span><span class="collo-verb">intervenire</span><span class="collo-verb">finire</span><span class="collo-verb">morire</span><span class="collo-verb">agisca</span><span class="collo-verb">intervenga</span><span class="collo-verb">interveniamo</span><span class="collo-verb">agiate</span>
+          </div>
+          <p class="note">Verbs range from agentive (transitive / intransitive) to causative and process / change-of-state verbs.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POTERE -->
+  <div class="section-label sub">Modal: POTERE</div>
+  <div class="cxn-block">
+    <div class="cxn-header">
+      <h2>Ability / Permission Construction</h2>
+      <span class="modal-badge badge-potere">potere</span>
+    </div>
+    <div class="cxn-body">
+      <div class="info-row">
+        <div class="info-label">Semantic function</div>
+        <div class="info-content semantic-fn">An ENABLER (intrinsic capacity of the agent) or PERMITTER (external authority or circumstance) construes a RESPONSIBLE AGENT as able or permitted to perform an ACTION. The source of enablement may be self-generated or externally granted; it may be asserted, negated, counterfactual, or retrospective. When ability is attributed to a second or third person by the speaker, the construction additionally functions as responsibility assignment.</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">General cxn-type</div>
+        <div class="info-content">Modal-Dynamic / Modal-Deontic Ability-Permission Construction</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Formal pattern</div>
+        <div class="info-content"><code class="pattern-code">[NP/pro/ø]<sub>AGENT</sub> + potere[fin/cond/subj] + V[inf] (+ NP<sub>OBJ</sub>)</code></div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Slots</div>
+        <div class="info-content">
+          <div class="slots-grid">
+            <div class="slot">
+              <div class="slot-label">Slot 1 · argument</div>
+              <div class="slot-role">RESPONSIBLE AGENT</div>
+              <div class="slot-syn">subject</div>
+              <div class="slot-form">NP / pro / ø</div>
+            </div>
+            <div class="slot predicate">
+              <div class="slot-label">Slot 2 · predicate</div>
+              <div class="slot-role">MODAL</div>
+              <div class="slot-syn">finite / conditional / subjunctive</div>
+              <div class="slot-form">potere[fin/cond/subj]</div>
+            </div>
+            <div class="slot predicate">
+              <div class="slot-label">Slot 3 · predicate</div>
+              <div class="slot-role">ACTION</div>
+              <div class="slot-syn">complement</div>
+              <div class="slot-form">V[inf]</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Source types</div>
+        <div class="info-content">
+          <table class="sub-cxn-table">
+            <thead>
+              <tr><th>Source type</th><th>Description</th><th>Example pattern</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>ENABLER (internal)</strong></td>
+                <td>Capacity intrinsic to the agent; the agent and the source of ability coincide</td>
+                <td class="example-sent">possiamo / potete + V[inf]</td>
+              </tr>
+              <tr>
+                <td><strong>ENABLER (counterfactual)</strong></td>
+                <td>Internal capacity negated or unrealized; typically in conditional or subjunctive mood</td>
+                <td class="example-sent">avremmo / avreste potuto + V[inf]</td>
+              </tr>
+              <tr>
+                <td><strong>ENABLER (retrospective)</strong></td>
+                <td>Past internal capacity, realized or missed; often carries evaluative or accusatory force</td>
+                <td class="example-sent">potevamo / potevate + V[inf]</td>
+              </tr>
+              <tr>
+                <td><strong>ENABLER (hypothetical / rhetorical)</strong></td>
+                <td>Hypothetical capacity, often implicitly denied; used to construct a rejected alternative</td>
+                <td class="example-sent">potremmo / potreste + V[inf]</td>
+              </tr>
+              <tr>
+                <td><strong>PERMITTER (external)</strong></td>
+                <td>Capacity granted or blocked by an external entity, norm, or circumstance; PERMITTER and AGENT are distinct</td>
+                <td class="example-sent">può / possono + V[inf] (context identifies PERMITTER)</td>
+              </tr>
+              <tr>
+                <td><strong>ENABLER / PERMITTER (hybrid)</strong></td>
+                <td>Internal and external constraints co-present; common in negated forms where both agent capacity and situational permission are at stake</td>
+                <td class="example-sent">non possiamo / non potete + V[inf]</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Sub-constructions</div>
+        <div class="info-content table-responsive">
+          <table class="sub-cxn-table">
+            <thead>
+              <tr><th>Construction</th><th>Schematic example</th><th>Source type</th><th>RESPONSIBLE AGENT</th><th>Pragmatic effect</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Modal + implicit 1pl subject (present)</td>
+                <td class="example-sent">Possiamo agire</td>
+                <td><span class="source-role source-potere">ENABLER internal</span></td>
+                <td>ø (1pl, morphology)</td>
+                <td><span class="pragmatic-tag">collective self-enabling capacity</span></td>
+              </tr>
+              <tr>
+                <td>Modal + explicit 2pl subject (present)</td>
+                <td class="example-sent">Potete agire</td>
+                <td><span class="source-role source-potere">ENABLER internal</span></td>
+                <td><em>voi</em> (2pl addressee)</td>
+                <td><span class="pragmatic-tag">capacity / permission assigned to addressee</span></td>
+              </tr>
+              <tr>
+                <td>Modal + explicit 3rd-person subject (present)</td>
+                <td class="example-sent">Il Governo può intervenire</td>
+                <td><span class="source-role source-potere">ENABLER internal or PERMITTER external</span></td>
+                <td>named NP (3rd person)</td>
+                <td><span class="pragmatic-tag">capacity or permission attributed to named agent</span></td>
+              </tr>
+              <tr>
+                <td>Modal + counterfactual (2pl / 3pl)</td>
+                <td class="example-sent">Avreste potuto farlo / Avrebbero potuto agire</td>
+                <td><span class="source-role source-potere">ENABLER counterfactual</span></td>
+                <td>explicit or implicit 2nd / 3rd person</td>
+                <td><span class="pragmatic-tag">unrealized capacity — retrospective accountability</span></td>
+              </tr>
+              <tr>
+                <td>Modal + retrospective imperfect</td>
+                <td class="example-sent">Potevamo / Potevate agire</td>
+                <td><span class="source-role source-potere">ENABLER retrospective</span></td>
+                <td>implicit 1pl or 2pl</td>
+                <td><span class="pragmatic-tag">past capacity realized or missed</span></td>
+              </tr>
+              <tr>
+                <td>Modal + hypothetical / rhetorical conditional</td>
+                <td class="example-sent">Potremmo / Potreste ignorarlo</td>
+                <td><span class="source-role source-potere">ENABLER hypothetical</span></td>
+                <td>implicit (1pl or 2pl)</td>
+                <td><span class="pragmatic-tag">capacity implicitly denied or rejected</span></td>
+              </tr>
+              <tr>
+                <td>Modal + external PERMITTER + subordinate subject</td>
+                <td class="example-sent">… perché [NP] possa / possano V</td>
+                <td><span class="source-role source-potere">PERMITTER external</span></td>
+                <td>explicit NP (subord.)</td>
+                <td><span class="pragmatic-tag">permission granted by external entity to named agent</span></td>
+              </tr>
+              <tr>
+                <td>Modal + negation (hybrid constraints)</td>
+                <td class="example-sent">Non possiamo / Non potete più V</td>
+                <td><span class="source-role source-potere">ENABLER / PERMITTER hybrid</span></td>
+                <td>implicit 1pl or 2pl</td>
+                <td><span class="pragmatic-tag">capacity negated by internal + external constraints</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Note on person</div>
+        <div class="info-content">
+          <p class="note">The person and number of the modal are diagnostically relevant: 1st-person forms tend to construe the speaker/group as both ENABLER and AGENT (self-enabling); 2nd-person forms shift the enablement or permission to the addressee, often acquiring accusatory or hortatory force; 3rd-person forms maximally dissociate ENABLER/PERMITTER from the named AGENT. Counterfactual and retrospective forms (conditional, pluperfect subjunctive) systematically implicate unrealized or missed capacity, triggering accountability readings regardless of person.</p>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Collo-profile</div>
+        <div class="info-content">
+          <div class="collo-list">
+            <span class="collo-verb">agire</span><span class="collo-verb">intervenire</span><span class="collo-verb">fare</span><span class="collo-verb">offrire</span><span class="collo-verb">negoziare</span><span class="collo-verb">consentire</span><span class="collo-verb">cambiare</span><span class="collo-verb">permettersi</span><span class="collo-verb">prevedere</span><span class="collo-verb">sostenere</span><span class="collo-verb">risparmiare</span><span class="collo-verb">procedere</span>
+          </div>
+          <p class="note">Wide typological range: transitive agentive, intransitive, process / change-of-state, reflexive. The construction places no lexical restriction on the complement verb.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Responsibility comparative -->
+  <div class="section-label sub">Responsibility – Comparative Overview</div>
+  <div class="cxn-block">
+    <div class="cxn-header">
+      <h2>Source Role Summary across Modal Constructions</h2>
+    </div>
+    <div class="table-responsive" style="padding: 0.5rem 0;">
+      <table class="sub-cxn-table" style="width: calc(100% - 2rem); margin: 1rem auto;">
+        <thead>
+          <tr><th>Modal</th><th>Source role</th><th>Source dissociated from Agent?</th><th>Prototypical effect</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>dovere</strong> + 1pl implicit</td><td><span class="source-role source-dovere">IMPOSER incorporated</span></td><td>No (collapsed in morphology)</td><td><span class="pragmatic-tag">diffuse collective obligation</span></td></tr>
+          <tr><td><strong>dovere</strong> + 1pl pronoun</td><td><span class="source-role source-dovere">IMPOSER incorporated</span></td><td>No</td><td><span class="pragmatic-tag">claimed collective obligation</span></td></tr>
+          <tr><td><strong>dovere</strong> + 2pl / 3rd-person subject</td><td><span class="source-role source-dovere">IMPOSER = speaker / discourse</span></td><td>Yes</td><td><span class="pragmatic-tag">responsibility directly assigned to addressee or named agent</span></td></tr>
+          <tr><td><strong>volere</strong> + INF (same agent)</td><td><span class="source-role source-volere">VOLITIONER = AGENT</span></td><td>No</td><td><span class="pragmatic-tag">self-directed volition</span></td></tr>
+          <tr><td><strong>volere</strong> + che + explicit 2nd / 3rd person</td><td><span class="source-role source-volere">VOLITIONER ≠ AGENT</span></td><td>Yes (two clauses)</td><td><span class="pragmatic-tag">responsibility projected / assigned to other</span></td></tr>
+          <tr><td><strong>volere</strong> + che + implicit co-ref. agent</td><td><span class="source-role source-volere">VOLITIONER = AGENT (co-ref)</span></td><td>Partial (two clauses)</td><td><span class="pragmatic-tag">reflexive collective responsibility</span></td></tr>
+          <tr><td><strong>volere</strong> + che + si impersonale</td><td><span class="source-role source-volere">VOLITIONER ≠ deagentivized</span></td><td>Yes (agent elided)</td><td><span class="pragmatic-tag">diffuse / elided responsibility</span></td></tr>
+          <tr><td><strong>potere</strong> + 1pl (present / imperfect)</td><td><span class="source-role source-potere">ENABLER internal</span></td><td>No</td><td><span class="pragmatic-tag">self-enabling or retrospective capacity</span></td></tr>
+          <tr><td><strong>potere</strong> + 2pl / 3rd person (present)</td><td><span class="source-role source-potere">ENABLER internal</span></td><td>Yes (speaker attributes capacity)</td><td><span class="pragmatic-tag">capacity / permission assigned to addressee or named agent</span></td></tr>
+          <tr><td><strong>potere</strong> + counterfactual (any person)</td><td><span class="source-role source-potere">ENABLER counterfactual</span></td><td>Partial</td><td><span class="pragmatic-tag">unrealized capacity — retrospective accountability</span></td></tr>
+          <tr><td><strong>potere</strong> + PERMITTER external</td><td><span class="source-role source-potere">PERMITTER ≠ AGENT</span></td><td>Yes</td><td><span class="pragmatic-tag">externally granted permission</span></td></tr>
+          <tr><td><strong>potere</strong> + negation (hybrid)</td><td><span class="source-role source-potere">ENABLER / PERMITTER mixed</span></td><td>Partial</td><td><span class="pragmatic-tag">capacity negated by internal + external constraints</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ==================== FAMILY 2: IMPERSONALITY ==================== -->
+
+  <div class="section-label">Construction Family 2 · Impersonality</div>
+  <div class="family-intro" style="border-left-color: var(--impers); background: var(--impers-light);">
+    An <strong>IMPERSONAL NECESSITY PREDICATE</strong> (verb or adjective) construes an <strong>ACTION</strong> as objectively necessary or important, with the <strong>RESPONSIBLE AGENT</strong> either suppressed entirely, embedded in a subordinate clause, or deagentivized through the impersonal <em>si</em>.
+  </div>
+
+  <div class="section-label sub">Necessity verbs &amp; adjectives</div>
+  <div class="cxn-block">
+    <div class="cxn-header">
+      <h2>Impersonal Necessity Construction</h2>
+      <span class="modal-badge badge-impers">bisognare · essere necessario / importante</span>
+    </div>
+    <div class="cxn-body">
+      <div class="info-row">
+        <div class="info-label">Semantic function</div>
+        <div class="info-content semantic-fn">An IMPERSONAL NECESSITY PREDICATE presents an ACTION as objectively required or important; the RESPONSIBLE AGENT is either fully suppressed (non-referential subject), embedded as an explicit or implicit subject in a subordinate clause, or generalized through impersonal <em>si</em>. No IMPOSER is lexically identified: the necessity is construed as context- or norm-derived.</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">General cxn-type</div>
+        <div class="info-content">Impersonal-Deontic Necessity Construction</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Formal patterns</div>
+        <div class="info-content" style="display:flex; flex-direction:column; gap:0.4rem;">
+          <div><span style="font-size:0.8rem; color:var(--text-muted); display:inline-block; width:40px;">(A)</span> <code class="pattern-code">bisogna / è necessario/importante + V[inf]</code></div>
+          <div><span style="font-size:0.8rem; color:var(--text-muted); display:inline-block; width:40px;">(B)</span> <code class="pattern-code">è necessario/importante + che + [NP/pro/ø/si]<sub>AGENT</sub> + V[cong]</code></div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Slots (pattern A)</div>
+        <div class="info-content">
+          <div class="slots-grid">
+            <div class="slot predicate">
+              <div class="slot-label">Slot 1 · predicate</div>
+              <div class="slot-role">NECESSITY PRED.</div>
+              <div class="slot-syn">impersonal verb / copula + adj</div>
+              <div class="slot-form">bisogna / è Adj[imp]</div>
+            </div>
+            <div class="slot predicate">
+              <div class="slot-label">Slot 2 · predicate</div>
+              <div class="slot-role">ACTION</div>
+              <div class="slot-syn">infinitive complement</div>
+              <div class="slot-form">V[inf]</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Slots (pattern B)</div>
+        <div class="info-content">
+          <div class="slots-grid">
+            <div class="slot predicate">
+              <div class="slot-label">Slot 1 · predicate</div>
+              <div class="slot-role">NECESSITY PRED.</div>
+              <div class="slot-syn">impersonal verb / copula + adj</div>
+              <div class="slot-form">è Adj[imp]</div>
+            </div>
+            <div class="slot">
+              <div class="slot-label">Slot 2 · argument</div>
+              <div class="slot-role">RESPONSIBLE AGENT</div>
+              <div class="slot-syn">subord. subject</div>
+              <div class="slot-form">NP / pro / ø / si</div>
+            </div>
+            <div class="slot predicate">
+              <div class="slot-label">Slot 3 · predicate</div>
+              <div class="slot-role">ACTION</div>
+              <div class="slot-syn">subord. verb</div>
+              <div class="slot-form">V[cong]</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Sub-constructions</div>
+        <div class="info-content table-responsive">
+          <table class="sub-cxn-table">
+            <thead>
+              <tr><th>Construction</th><th>Example</th><th>NECESSITY PRED.</th><th>RESPONSIBLE AGENT</th><th>Pragmatic effect</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Necessity + V[inf] (no overt agent)</td>
+                <td class="example-sent">Bisogna intervenire / È necessario agire</td>
+                <td><span class="source-role source-impers">bisogna / è necessario</span></td>
+                <td>fully suppressed (ø)</td>
+                <td><span class="pragmatic-tag">agent-less objective necessity</span></td>
+              </tr>
+              <tr>
+                <td>Necessity + explicit subordinate subject</td>
+                <td class="example-sent">È necessario che il Governo intervenga</td>
+                <td><span class="source-role source-impers">è necessario</span></td>
+                <td><em>il Governo</em> (explicit, subord.)</td>
+                <td><span class="pragmatic-tag">necessity attributed to named agent</span></td>
+              </tr>
+              <tr>
+                <td>Necessity + implicit subordinate subject</td>
+                <td class="example-sent">È necessario che interveniamo subito</td>
+                <td><span class="source-role source-impers">è necessario</span></td>
+                <td>implicit, co-ref. with discourse participants</td>
+                <td><span class="pragmatic-tag">necessity distributed over inclusive collective</span></td>
+              </tr>
+              <tr>
+                <td>Necessity + impersonal <em>si</em></td>
+                <td class="example-sent">È importante che si intervenga</td>
+                <td><span class="source-role source-impers">è importante</span></td>
+                <td>deagentivized (<em>si</em>)</td>
+                <td><span class="pragmatic-tag">agent universally generalized / elided</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Collo-profile</div>
+        <div class="info-content">
+          <div class="collo-list">
+            <span class="collo-verb">intervenire</span><span class="collo-verb">agire</span><span class="collo-verb">fare</span><span class="collo-verb">rispondere</span><span class="collo-verb">provvedere</span><span class="collo-verb">decidere</span><span class="collo-verb">cambiare</span><span class="collo-verb">procedere</span><span class="collo-verb">garantire</span>
+          </div>
+          <p class="note">Predominantly agentive or process verbs; the construction is compatible with any lexical verb expressing a desirable or required action.</p>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Necessity predicates</div>
+        <div class="info-content">
+          <div class="collo-list">
+            <span class="collo-verb">bisognare</span><span class="collo-verb">essere necessario</span><span class="collo-verb">essere importante</span><span class="collo-verb">essere fondamentale</span><span class="collo-verb">essere urgente</span><span class="collo-verb">essere indispensabile</span><span class="collo-verb">occorrere</span>
+          </div>
+          <p class="note">All are impersonal: they take no referential subject in Italian (<em>bisogna</em>, <em>occorre</em>) or appear with expletive <em>è</em> + adjective.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Impersonality comparative -->
+  <div class="section-label sub">Impersonality – Comparative Overview</div>
+  <div class="cxn-block">
+    <div class="cxn-header">
+      <h2>Agent Visibility across Impersonal Necessity Sub-constructions</h2>
+    </div>
+    <div class="table-responsive" style="padding: 0.5rem 0;">
+      <table class="sub-cxn-table" style="width: calc(100% - 2rem); margin: 1rem auto;">
+        <thead>
+          <tr><th>Construction</th><th>RESPONSIBLE AGENT visibility</th><th>IMPOSER identified?</th><th>Pragmatic effect</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Necessity + V[inf]</td>
+            <td>Fully suppressed</td>
+            <td>No – norm / context-derived</td>
+            <td><span class="pragmatic-tag">universal impersonal necessity</span></td>
+          </tr>
+          <tr>
+            <td>Necessity + che + explicit NP</td>
+            <td>Explicit, named</td>
+            <td>No – norm / context-derived</td>
+            <td><span class="pragmatic-tag">necessity attributed to specific agent</span></td>
+          </tr>
+          <tr>
+            <td>Necessity + che + implicit pro</td>
+            <td>Implicit, recoverable</td>
+            <td>No – norm / context-derived</td>
+            <td><span class="pragmatic-tag">inclusive collective necessity</span></td>
+          </tr>
+          <tr>
+            <td>Necessity + che + si</td>
+            <td>Deagentivized</td>
+            <td>No – norm / context-derived</td>
+            <td><span class="pragmatic-tag">universally generalized / agent elided</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="padding: 0 1.5rem 1.5rem;">
+      <p class="note"><strong>Key contrast with the Responsibility family:</strong> the Impersonality constructions never lexicalize an IMPOSER. The source of necessity is always external and norm-derived, making these constructions pragmatically stronger for universalizing obligation while rhetorically deflecting personal accountability.</p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
