@@ -1,0 +1,16 @@
+% 1d_adjectival_impersonal_infinitive.req
+% Goal: essere + adjective + infinitive, without explicit subject.
+% Example: è necessario intervenire
+
+pattern {
+  E [lemma="essere"];
+  A [lemma="necessario"|"urgente"|"importante"|"fondamentale"];
+  V [upos=VERB, VerbForm=Inf];
+
+  A -[cop]-> E;
+  A -[xcomp|ccomp]-> V;
+}
+
+without {
+  A -[nsubj]-> S;
+}

@@ -1,0 +1,14 @@
+% 2f_modal_subordinate_impersonal_si.req
+% Goal: modal + che-subordinate with impersonal/passive si.
+% Interpretation: embedded agency is impersonalized or generalized.
+
+pattern {
+  M [lemma="dovere"|"potere"|"volere", VerbForm=Fin];
+  V [upos=VERB, VerbForm=Fin];
+  C [lemma="che"];
+  SI [lemma="si"];
+
+  M -[ccomp]-> V;
+  V -[mark]-> C;
+  V -[expl]-> SI;
+}

@@ -1,0 +1,8 @@
+pattern {
+  M [lemma="dovere"|"potere"|"volere", VerbForm=Fin];
+  V [upos=VERB];
+  C [lemma="che"];
+
+  M -[ccomp]-> V;
+  V -[mark]-> C;
+}

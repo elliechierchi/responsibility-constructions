@@ -1,0 +1,27 @@
+% Goal: identify modal constructions.
+
+% Slots:
+
+% M = modal verb
+
+% V = lexical verb
+
+% Goal: modal + infinitive construction.
+
+pattern {
+
+  V [upos=VERB, VerbForm=Inf];
+
+  M [lemma="dovere"|"potere"|"volere"];
+
+  V -[aux]-> M;
+
+}
+
+without {
+
+  V -[aux]-> AUX;
+
+  AUX [lemma="avere"|"essere"];
+
+}

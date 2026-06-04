@@ -1,0 +1,18 @@
+% Goal: modal + infinitive with auxiliary.
+
+% Example: avrebbero potuto trovare
+
+
+pattern {
+
+  V [upos=VERB, VerbForm=Inf];
+
+  M [lemma="dovere"|"potere"|"volere"];
+
+  AUX [lemma="avere"|"essere"];
+
+  V -[aux]-> M;
+
+  V -[aux]-> AUX;
+
+}

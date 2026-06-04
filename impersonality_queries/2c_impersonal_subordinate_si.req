@@ -1,0 +1,13 @@
+% 2c_impersonal_subordinate_si.req
+% Goal: impersonal/necessity construction + subordinate with impersonal/passive si.
+
+pattern {
+  I [lemma="bisognare"|"servire"|"necessitare"];
+  V [upos=VERB, VerbForm=Fin];
+  C [lemma="che"];
+  SI [lemma="si"];
+
+  I -[ccomp]-> V;
+  V -[mark]-> C;
+  V -[expl]-> SI;
+}

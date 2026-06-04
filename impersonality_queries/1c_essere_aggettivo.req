@@ -1,0 +1,16 @@
+% 1c_adjectival_impersonal.req
+% Goal: adjectival impersonal construction.
+
+pattern {
+  E [lemma="essere"];
+  A [lemma="necessario"|"urgente"|"importante"|"fondamentale"];
+  V [upos=VERB];
+
+  A -[cop]-> E;
+
+  A -[ccomp|xcomp]-> V;
+}
+
+without {
+  A -[nsubj]-> S;
+}

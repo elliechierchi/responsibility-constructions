@@ -1,0 +1,24 @@
+% 2b_impersonal_subordinate_implicit_subject.req
+% Goal: impersonal/necessity construction + subordinate without explicit subject and without impersonal si.
+
+pattern {
+  I [lemma="bisognare"|"servire"|"necessitare"];
+  V [upos=VERB, VerbForm=Fin];
+  C [lemma="che"];
+
+  I -[ccomp]-> V;
+  V -[mark]-> C;
+}
+
+without {
+  V -[nsubj]-> S;
+}
+
+without {
+  V -[expl]-> SI;
+  SI [lemma="si"];
+}
+
+without {
+  V -[expl:impers]-> SI;
+}

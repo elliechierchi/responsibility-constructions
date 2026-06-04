@@ -1,0 +1,18 @@
+% Goal: essere + adjective + che-subordinate with impersonal/passive si.
+
+pattern {
+  E [lemma="essere"];
+  A [lemma="necessario"|"urgente"|"importante"|"fondamentale"];
+  V [upos=VERB, VerbForm=Fin];
+  C [lemma="che"];
+  SI [lemma="si"];
+
+  A -[cop]-> E;
+  A -[ccomp]-> V;
+  V -[mark]-> C;
+  V -[expl]-> SI;
+}
+
+without {
+  A -[nsubj]-> X;
+}

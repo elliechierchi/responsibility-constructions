@@ -1,0 +1,14 @@
+% 1a_impersonal_infinitive.req
+% Goal: impersonal necessity predicate + infinitive, without explicit subject.
+% Examples: bisogna intervenire, serve fare, necessita agire.
+
+pattern {
+  I [lemma="bisognare"|"servire"|"necessitare"];
+  V [upos=VERB, VerbForm=Inf];
+
+  I -[xcomp|ccomp]-> V;
+}
+
+without {
+  I -[nsubj]-> S;
+}

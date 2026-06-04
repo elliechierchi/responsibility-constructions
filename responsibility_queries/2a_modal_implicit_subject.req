@@ -1,0 +1,14 @@
+% 2a_modal_implicit_subject.req
+% Goal: modal construction with no syntactically expressed subject.
+% Interpretation: implicit but morphologically recoverable agency in Italian pro-drop.
+
+pattern {
+  V [upos=VERB];
+  M [lemma="dovere"|"potere"|"volere"];
+
+  V -[aux]-> M;
+}
+
+without {
+  V -[nsubj]-> S;
+}

@@ -1,0 +1,21 @@
+% 2b_modal_explicit_pronoun_subject.req
+% Goal: modal construction with explicit pronominal subject.
+% Interpretation: explicit pronominal agency, including personal/indefinite pronouns
+% but excluding demonstrative/anaphoric subjects.
+
+pattern {
+  V [upos=VERB];
+  M [lemma="dovere"|"potere"|"volere"];
+  S [upos=PRON];
+
+  V -[aux]-> M;
+  V -[nsubj]-> S;
+}
+
+without {
+  S [lemma="che"];
+}
+
+without {
+  S [PronType=Dem];
+}

@@ -1,0 +1,27 @@
+% 2e_modal_subordinate_implicit_subject.req
+% Goal: modal + che-subordinate with no syntactically expressed subject
+% and no impersonal/passive si.
+% Interpretation: embedded subject is implicit but potentially recoverable
+% from verbal morphology.
+
+pattern {
+  M [lemma="dovere"|"potere"|"volere", VerbForm=Fin];
+  V [upos=VERB, VerbForm=Fin];
+  C [lemma="che"];
+
+  M -[ccomp]-> V;
+  V -[mark]-> C;
+}
+
+without {
+  V -[nsubj]-> S;
+}
+
+without {
+  V -[expl]-> SI;
+  SI [lemma="si"];
+}
+
+without {
+  V -[expl:impers]-> SI;
+}

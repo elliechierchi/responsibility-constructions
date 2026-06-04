@@ -1,0 +1,16 @@
+% 1b_impersonal_subordinate.req
+% Goal: impersonal necessity predicate + che-subordinate, without explicit subject.
+% Examples: bisogna che..., serve che..., necessita che...
+
+pattern {
+  I [lemma="bisognare"|"servire"|"necessitare"];
+  V [upos=VERB];
+  C [lemma="che"];
+
+  I -[ccomp]-> V;
+  V -[mark]-> C;
+}
+
+without {
+  I -[nsubj]-> S;
+}

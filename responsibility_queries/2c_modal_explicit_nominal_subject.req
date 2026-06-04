@@ -1,0 +1,12 @@
+% 2c_modal_explicit_nominal_subject.req
+% Goal: modal construction with explicit nominal subject.
+% Interpretation: responsibility assigned to a nominal actor/institution/group.
+
+pattern {
+  V [upos=VERB];
+  M [lemma="dovere"|"potere"|"volere"];
+  S [upos=NOUN];
+
+  V -[aux]-> M;
+  V -[nsubj]-> S;
+}
